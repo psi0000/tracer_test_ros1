@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/tracer/catkin_ws/devel/setup.sh

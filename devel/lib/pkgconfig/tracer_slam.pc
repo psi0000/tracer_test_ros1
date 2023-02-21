@@ -1,0 +1,8 @@
+prefix=/home/tracer/catkin_ws/devel
+
+Name: tracer_slam
+Description: Description of tracer_slam
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: roscpp sensor_msgs
