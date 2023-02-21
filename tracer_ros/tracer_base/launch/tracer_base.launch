@@ -17,7 +17,7 @@
         <param name="simulated_robot" type="bool" value="$(arg simulated_robot)" />
 
         <param name="odom_frame" type="string" value="odom" />
-        <param name="base_frame" type="string" value="base_link" />
+        <param name="base_frame" type="string" value="base_footprint" />
 
     </node>
 </launch>

@@ -110,25 +110,53 @@ Visualization Manager:
       Update Interval: 0
       Value: true
       Visual Enabled: true
+    - Class: rviz/Axes
+      Enabled: true
+      Length: 0.5
+      Name: Axes
+      Radius: 0.009999999776482582
+      Reference Frame: base_footprint
+      Value: true 
     - Class: rviz/TF
-      Enabled: false
+      Enabled: true
       Frame Timeout: 15
       Frames:
         All Enabled: true
+        base_footprint:
+          Value: true
+        base_link:
+          Value: true
+        caster_left_Link:
+          Value: true
+        caster_right_link:
+          Value: true
+        wheel_left_link:
+          Value: true
+        wheel_right_link:
+          Value: true
       Marker Scale: 1
       Name: TF
       Show Arrows: true
       Show Axes: true
       Show Names: true
       Tree:
-        {}
+        base_footprint:
+          base_link:
+            caster_left_Link:
+            {}
+            caster_right_link:
+            {}
+            wheel_left_link:
+            {}
+            wheel_right_link:
+            {}
       Update Interval: 0
-      Value: false
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
     Default Light: true
-    Fixed Frame: base_link
+    Fixed Frame: base_footprint
     Frame Rate: 30
   Name: root
   Tools:

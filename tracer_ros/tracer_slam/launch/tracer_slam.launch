@@ -11,4 +11,6 @@
     <arg name="set_frame_id" value="$(arg set_lidar_frame_id)"/>
     <arg name="set_port" value="$(arg set_port_lidar)"/>
   
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find tracer_slam)/rviz/model_display.rviz" />
+
 </launch>

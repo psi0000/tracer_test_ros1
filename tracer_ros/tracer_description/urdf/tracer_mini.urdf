@@ -283,7 +283,7 @@
       <origin xyz="0 0 0" rpy="0 0 -1.57"/>
       <geometry>
         <mesh
-          filename="package://tracer_description/meshes/sensor/first.stl" />
+          filename="package://tracer_description/meshes/base/first.stl" />
       </geometry>
     </collision>
   </link>
@@ -416,7 +416,7 @@
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
         <mesh
-          filename="package://tracer_description/meshes/sensor/second.stl" />
+          filename="package://tracer_description/meshes/base/second.stl" />
       </geometry>
     </collision>
   </link>
