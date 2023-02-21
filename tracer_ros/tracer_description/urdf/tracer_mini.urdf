@@ -1,0 +1,446 @@
+<?xml version="1.0" ?>
+
+<robot name="tracer_mini" xmlns:xacro="http://ros.org/wiki/xacro">
+    
+    <material name="black">
+      <color rgba="0.0 0.0 0.0 1.0"/>
+  </material>
+
+  <material name="dark">
+    <color rgba="0.3 0.3 0.3 1.0"/>
+  </material>
+
+  <material name="light_black">
+    <color rgba="0.4 0.4 0.4 1.0"/>
+  </material>
+
+  <material name="blue">
+    <color rgba="0.0 0.0 0.8 1.0"/>
+  </material>
+
+  <material name="green">
+    <color rgba="0.0 0.8 0.0 1.0"/>
+  </material>
+
+  <material name="grey">
+    <color rgba="0.5 0.5 0.5 1.0"/>
+  </material>
+
+  <material name="orange">
+    <color rgba="1.0 0.4235 0.0392 1.0"/>
+  </material>
+
+  <material name="brown">
+    <color rgba="0.8706 0.8118 0.7647 1.0"/>
+  </material>
+
+  <material name="red">
+    <color rgba="0.8 0.0 0.0 1.0"/>
+  </material>
+
+  <material name="white">
+    <color rgba="1.0 1.0 1.0 1.0"/>
+  </material>
+
+  <link name="base_footprint"/>
+  
+  <joint name="base_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="-0.122 -0.0 0.01564" rpy="0 0 0"/>
+  </joint>
+
+  <link name="base_link">
+    <inertial>
+      <origin
+        xyz="0.0159871268556407 1.58872275333177E-05 -0.0309422377248268"
+        rpy="0 0 0" />
+      <mass
+        value="24.3948952632956" />
+      <inertia
+        ixx="0.330322675681357"
+        ixy="-8.93178579768822E-06"
+        ixz="0.010552102579657"
+        iyy="0.327495768676369"
+        iyz="1.4143030767649E-06"
+        izz="0.614434971559817" />
+    </inertial>
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 1.57"/>
+      <geometry>
+          <mesh filename="package://tracer_description/meshes/base/base.stl"/>
+      </geometry>
+      <material name="brown"/>
+    </visual>
+    <collision>
+      <origin xyz="0.0 0 0.0" rpy="0 0 1.57"/>
+      <geometry>
+        <mesh filename="package://tracer_description/meshes/base/base.stl"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="wheel_left_link">
+    <inertial>
+      <origin
+        xyz="-0.11068 0.066655 0.10537" rpy="0 1.57 0" />
+      <mass value="17.416" />
+      <inertia
+        ixx="0.24331"
+        ixy="0.010574"
+        ixz="8.9424E-06"
+        iyy="0.43808"
+        iyz="-1.4143E-06"
+        izz="0.2374" />
+    </inertial>
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="0 1.57 0"/>
+      <geometry>
+          <mesh filename="package://tracer_description/meshes/base/mob_wheel.stl" />
+      </geometry>
+      <material name="dark"/>
+    </visual>
+    <collision>
+      <origin xyz="0.0 0.0 0.0" rpy="0 1.57 0"/>
+      <geometry>
+        <mesh
+          filename="package://tracer_description/meshes/base/mob_wheel.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="wheel_left_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel_left_link"/>
+    <origin xyz="0.122 0.1265 0.04186" rpy="-1.57 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+  
+  <joint name="wheel_right_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel_right_link"/>
+    <origin xyz="0.122 -0.1265 0.04186" rpy="-1.57 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <link name="wheel_right_link">
+    <inertial>
+      <origin
+        xyz="-0.11068 0.066655 -0.10543" rpy="0 1.57 0" />
+      <mass value="17.416" />
+      <inertia
+        ixx="0.24331"
+        ixy="0.010574"
+        ixz="8.9424E-06"
+        iyy="0.43808"
+        iyz="-1.4143E-06"
+        izz="0.2374" />
+    </inertial>
+    <visual>
+        <origin xyz="0.0 0.0 0.0" rpy="0 1.57 0"/>
+        <geometry>
+            <mesh filename="package://tracer_description/meshes/base/mob_wheel.stl" />
+        </geometry>
+        <material name="dark"/>
+    </visual>
+    <collision>
+        <origin xyz="0 0 0" rpy="0 1.57 0"/>
+      <geometry>
+        <mesh
+          filename="package://tracer_description/meshes/base/mob_wheel.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="caster_left_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="caster_left_link"/>
+    <origin xyz="-0.12075 0.125 0.07514" rpy="0 0 0"/>
+  </joint>
+
+  <link name="caster_left_link">
+    <visual>
+        <origin xyz="0 0.0 0.0" rpy="0 0 1.57"/>
+        <geometry>
+            <mesh filename="package://tracer_description/meshes/base/caster.stl" />
+        </geometry>
+        <material name="dark"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0.0 0.0" rpy="0 0 1.57"/>
+      <geometry>
+        <mesh
+          filename="package://tracer_description/meshes/base/caster.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="caster_right_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="caster_right_link"/>
+    <origin xyz="-0.12075 -0.125 0.07514" rpy="0 0 0"/>
+  </joint>
+
+  <link name="caster_right_link">
+    <visual>
+        <origin xyz="0 0 0.0" rpy="0 0 1.57"/>
+        <geometry>
+            <mesh filename="package://tracer_description/meshes/base/caster.stl" />
+        </geometry>
+        <material name="dark"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.0" rpy="0 0 1.57"/>
+      <geometry>
+        <mesh
+          filename="package://tracer_description/meshes/base/caster.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="caster_l_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="caster_l_Link"/>
+    <origin xyz="-0.14755 -0.125 0.01814" rpy="1.57 0 0"/>
+    <axis xyz="0 0 -1"/>
+  </joint>
+    
+  <link name="caster_l_Link">
+    <inertial>
+      <origin xyz="0.14232 0.089655 0.12497" rpy="0 0 0" />
+      <mass value="17.416" />
+      <inertia
+        ixx="0.24331"
+        ixy="0.010574"
+        ixz="8.9424E-06"
+        iyy="0.43808"
+        iyz="-1.4143E-06"
+        izz="0.2374" />
+    </inertial>
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.0325" length="0.025"/>
+      </geometry>
+      <material name="grey"/>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.0325" length="0.025"/>
+      </geometry>
+    </collision>
+  </link>
+
+  
+  <joint name="caster_r_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="caster_r_link"/>
+    <origin xyz="-0.14755 0.125 0.01814" rpy="1.57 0 0"/>
+    <axis xyz="0 0 -1"/>
+  </joint>
+
+  <link name="caster_r_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.025" radius="0.0325"/>
+      </geometry>
+      <material name="grey"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.025" radius="0.0325"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="17.416" />
+      <inertia ixx="0.24331" ixy="0.010574" ixz="8.9424E-06" iyy="0.43808" iyz="-1.4143E-06" izz="0.2374" />
+    </inertial>
+  </link>
+
+  <joint name="first_f" type="fixed">
+    <parent link="base_link"/>
+    <child link="first_floor"/>
+    <origin xyz="0 0 0.17964" rpy="0 0 0"/>
+  </joint>
+
+  <link name="first_floor">
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 -1.57"/>
+        <geometry>
+            <mesh filename="package://tracer_description/meshes/base/first.stl" />
+        </geometry>
+        <material name="dark"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 -1.57"/>
+      <geometry>
+        <mesh
+          filename="package://tracer_description/meshes/sensor/first.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="imu_joint" type="fixed">
+    <parent link="first_floor"/>
+    <child link="imu_link"/>
+    <origin xyz="0 0 0.01" rpy="0 0 0"/>
+  </joint>
+
+  <link name="imu_link">
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <cylinder length="0.01" radius="0.0025"/>
+        </geometry>
+        <material name="dark"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.01" radius="0.0025"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="1st_suppoter" type="fixed">
+    <parent link="first_floor"/>
+    <child link="first_suppoter"/>
+    <origin xyz="0.046 0.046 0.005" rpy="0 0 0"/>
+  </joint>
+
+  <link name="first_suppoter">
+    <visual>
+        <origin xyz="0 0 0.02" rpy="0 0 0"/>
+        <geometry>
+          <cylinder length="0.04" radius="0.0025"/>
+        </geometry>
+        <material name="dark"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.02" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.04" radius="0.0025"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="2nd_suppoter" type="fixed">
+    <parent link="first_floor"/>
+    <child link="second_suppoter"/>
+    <origin xyz="0.046 -0.046 0.005" rpy="0 0 0"/>
+  </joint>
+
+  <link name="second_suppoter">
+    <visual>
+        <origin xyz="0 0 0.02" rpy="0 0 0"/>
+        <geometry>
+          <cylinder length="0.04" radius="0.0025"/>
+        </geometry>
+        <material name="dark"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.02" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.04" radius="0.0025"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="3rd_suppoter" type="fixed">
+    <parent link="first_floor"/>
+    <child link="third_suppoter"/>
+    <origin xyz="-0.046 0.046 0.005" rpy="0 0 0"/>
+  </joint>
+
+  <link name="third_suppoter">
+    <visual>
+        <origin xyz="0 0 0.02" rpy="0 0 0"/>
+        <geometry>
+          <cylinder length="0.04" radius="0.0025"/>
+        </geometry>
+        <material name="dark"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.02" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.04" radius="0.0025"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="4th_suppoter" type="fixed">
+    <parent link="first_floor"/>
+    <child link="forth_suppoter"/>
+    <origin xyz="-0.046 -0.046 0.005" rpy="0 0 0"/>
+  </joint>
+
+  <link name="forth_suppoter">
+    <visual>
+        <origin xyz="0 0 0.02" rpy="0 0 0"/>
+        <geometry>
+          <cylinder length="0.04" radius="0.0025"/>
+        </geometry>
+        <material name="dark"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.02" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.04" radius="0.0025"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="2nd_floor" type="fixed">
+    <parent link="first_floor"/>
+    <child link="second_floor"/>
+    <origin xyz="0 0 0.045" rpy="0 0 0"/>
+  </joint>
+
+  <link name="second_floor">
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+            <mesh filename="package://tracer_description/meshes/base/second.stl" />
+        </geometry>
+        <material name="dark"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh
+          filename="package://tracer_description/meshes/sensor/second.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="lidar" type="fixed">
+    <parent link="base_link"/>
+    <child link="base_scan"/>
+    <origin xyz="0 0 0.22964" rpy="0 0 0"/>
+  </joint>
+
+  <link name="base_scan">
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+            <mesh filename="package://tracer_description/meshes/sensor/ydlidar_g2.stl" />
+        </geometry>
+        <material name="dark"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh
+          filename="package://tracer_description/meshes/sensor/ydlidar_g2.stl" />
+      </geometry>
+    </collision>
+  </link>
+</robot>
