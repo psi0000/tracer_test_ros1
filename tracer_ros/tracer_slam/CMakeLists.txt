@@ -13,6 +13,7 @@ catkin_package(
   CATKIN_DEPENDS roscpp sensor_msgs  
 )
 include_directories(
+  include
   ${catkin_INCLUDE_DIRS}
 )
 
