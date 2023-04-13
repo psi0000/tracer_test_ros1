@@ -10,7 +10,6 @@
 #include "tracer_base/tracer_messenger.hpp"
 
 #include <tf/transform_broadcaster.h>
-
 #include "tracer_msgs/TracerStatus.h"
 #include "tracer_msgs/UartTracerStatus.h"
 namespace westonrobot
@@ -30,9 +29,10 @@ void TracerROSMessenger::SetupSubscription()
 {
     // odometry publisher
     odom_publisher_ = nh_->advertise<nav_msgs::Odometry>(odom_frame_, 50);
+    path_pub = nh_->advertise<nav_msgs::Path>("path", 10);
     status_publisher_ = nh_->advertise<tracer_msgs::TracerStatus>("/tracer_status", 10);
     status_uart_publisher_ = nh_->advertise<tracer_msgs::UartTracerStatus>("/uart_tracer_status", 10);
-
+    
     // cmd subscriber
     motion_cmd_subscriber_ = nh_->subscribe<geometry_msgs::Twist>("/cmd_vel", 5, &TracerROSMessenger::TwistCmdCallback, this); //不启用平滑包则订阅“cmd_vel”
     light_cmd_subscriber_ = nh_->subscribe<tracer_msgs::TracerLightCmd>("/tracer_light_control", 5, &TracerROSMessenger::LightCmdCallback, this);
@@ -310,6 +310,20 @@ void TracerROSMessenger::PublishOdometryToROS(double linear, double angular, dou
     odom_msg.twist.twist.linear.y = 0.0;
     odom_msg.twist.twist.angular.z = angular_speed_;
 
+
     odom_publisher_.publish(odom_msg);
+
+
+    static nav_msgs::Path path;
+    path.header.stamp= odom_msg.header.stamp;
+    path.header.frame_id = odom_msg.header.frame_id;
+
+    geometry_msgs::PoseStamped pose_stamped;
+    pose_stamped.pose = odom_msg.pose.pose;
+    pose_stamped.header = odom_msg.header;
+    path.poses.push_back(pose_stamped);
+    path_pub.publish(path); 
+    
+
 }
 } // namespace wescore

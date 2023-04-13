@@ -14,6 +14,7 @@ find_package(catkin REQUIRED COMPONENTS
 #    roslint
     roscpp 
     sensor_msgs
+    nav_msgs
     std_msgs
     geometry_msgs
     tracer_msgs

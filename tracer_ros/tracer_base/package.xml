@@ -20,12 +20,14 @@
   <build_depend>roslint</build_depend>
   <build_depend>sensor_msgs</build_depend>
   <build_depend>ugv_sdk</build_depend>
+  <build_depend>nav_msgs</build_depend>
   <!--build_depend>tracer_sdk</build_depend-->
   <exec_depend>controller_manager</exec_depend>
   <exec_depend>geometry_msgs</exec_depend>
   <exec_depend>tracer_msgs</exec_depend>
   <exec_depend>roscpp</exec_depend>
   <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>nav_msgs</exec_depend>
   <exec_depend>topic_tools</exec_depend>
   <!--exec_depend>tracer_sdk</exec_depend-->
   <exec_depend>ugv_sdk</exec_depend>
