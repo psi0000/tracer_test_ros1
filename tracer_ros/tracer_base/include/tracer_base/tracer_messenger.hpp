@@ -50,7 +50,7 @@ private:
 
     std::mutex twist_mutex_;
     geometry_msgs::Twist current_twist_;
-    geometry_msgs::Pose current_pose;
+    // geometry_msgs::Pose current_pose;
     
     ros::Publisher odom_publisher_;
     ros::Publisher path_pub;
