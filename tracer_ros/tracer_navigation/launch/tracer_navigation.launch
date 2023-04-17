@@ -1,0 +1,32 @@
+<launch>
+  <!-- Arguments -->
+  <arg name="map_file" default="$(find tracer_navigation)/maps/seungin_map.yaml"/>
+  <arg name="open_rviz" default="true"/>
+  <arg name="move_forward_only" default="false"/>
+  <!-- Tracer 고쳐야 될 부분-->
+  <include file="$(find tracer_description)/launch/display_models.launch"/>
+  <!-- Map server -->
+  <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
+
+  <!-- AMCL -->
+  <include file="$(find tracer_navigation)/launch/amcl.launch"/>
+
+  <!-- move_base -->
+  <include file="$(find tracer_navigation)/launch/move_base.launch">
+    <!-- <arg name="model" value="$(arg model)" /> -->
+    <arg name="move_forward_only" value="$(arg move_forward_only)"/>
+  </include>
+
+  <!-- lidar -->
+  <arg name="set_lidar_frame_id" default="base_scan"/>
+  <arg name="set_port_lidar" default="/dev/ttyLiDAR"/>
+  
+  <include file="$(find ydlidar_ros_driver)/launch/lidar.launch"/>
+    <arg name="set_frame_id" value="$(arg set_lidar_frame_id)"/>
+    <arg name="set_port" value="$(arg set_port_lidar)"/>
+  
+  <!-- rviz -->
+  <group if="$(arg open_rviz)"> 
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find tracer_navigation)/rviz/model_navigation.rviz" />
+  </group>
+</launch>

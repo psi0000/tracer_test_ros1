@@ -1,0 +1,26 @@
+digraph G {
+node [shape=box];
+"base_footprint" [label="base_footprint"];
+"base_link" [label="base_link"];
+"caster_l_Link" [label="caster_l_Link"];
+"caster_left_link" [label="caster_left_link"];
+"caster_r_Link" [label="caster_r_Link"];
+"caster_right_link" [label="caster_right_link"];
+"wheel_left_link" [label="wheel_left_link"];
+"wheel_right_link" [label="wheel_right_link"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"base_footprint" -> "base_joint" [label="xyz: -0.122 -0 0.01564 \nrpy: 0 -0 0"]
+"base_joint" -> "base_link"
+"base_link" -> "caster_l_joint" [label="xyz: -0.14755 -0.125 0.01814 \nrpy: 1.57 -0 0"]
+"caster_l_joint" -> "caster_l_Link"
+"base_link" -> "caster_left_joint" [label="xyz: -0.12075 0.125 0.07514 \nrpy: 0 -0 0"]
+"caster_left_joint" -> "caster_left_link"
+"base_link" -> "caster_r_joint" [label="xyz: -0.14755 0.125 0.01814 \nrpy: 1.57 -0 0"]
+"caster_r_joint" -> "caster_r_Link"
+"base_link" -> "caster_right_joint" [label="xyz: -0.12075 -0.125 0.07514 \nrpy: 0 -0 0"]
+"caster_right_joint" -> "caster_right_link"
+"base_link" -> "wheel_left_joint" [label="xyz: 0.122 0.1265 0.04186 \nrpy: -1.57 0 0"]
+"wheel_left_joint" -> "wheel_left_link"
+"base_link" -> "wheel_right_joint" [label="xyz: 0.122 -0.1265 0.04186 \nrpy: -1.57 0 0"]
+"wheel_right_joint" -> "wheel_right_link"
+}

@@ -1,0 +1,16 @@
+<launch>
+  <arg name="set_lidar_frame_id" default="base_scan"/>
+  <arg name="set_port_lidar" default="/dev/ttyLiDAR"/>
+
+  <!-- launching state publishers -->
+  <include file="$(find tracer_description)/launch/display_models.launch"/>
+  <!-- launching gmapping node and parameters -->
+  <include file="$(find tracer_slam)/launch/tracer_gmapping.launch"/>
+  <!-- lidar -->
+  <include file="$(find ydlidar_ros_driver)/launch/lidar.launch"/>
+    <arg name="set_frame_id" value="$(arg set_lidar_frame_id)"/>
+    <arg name="set_port" value="$(arg set_port_lidar)"/>
+  
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find tracer_slam)/rviz/model_display.rviz" />
+
+</launch>
